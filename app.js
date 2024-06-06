@@ -59,6 +59,51 @@ app.get('/pesquisarLivros', (req, res) => {
   });
 });
 
+const carregarAutores = (callback) => {
+  db.query(
+    'SELECT * FROM autor ORDER BY nome ASC',
+    (error, results) => {
+      if (error) {
+        callback(error, null);
+      } else {
+        const autores = results.map(result => result);
+        callback(null, autores);
+      }
+    }
+  );
+};
+
+app.get('/cadastrarLivro', (req, res) => {
+  carregarAutores( (error, listaAutores) => {
+    if (error) {
+      console.log('Erro ao buscar autores');
+      res.status(500).send('Erro ao buscar autores');
+    } else {
+      res.render('cadastrarLivro', { autores: listaAutores, livro: null});
+    }
+
+  })
+});
+
+app.post('/cadastrarLivro', (req, res) => {
+  const ISBN = parseInt(req.body.inputISBN);
+  const id_autor = parseInt(req.body.inputAutor);
+  const titulo = req.body.inputTitulo;
+  const ano_publicacao = parseInt(req.body.inputAnoPublicacao);
+  const genero = req.body.inputGenero;
+  const resumo = req.body.textResumo;
+
+  db.query('INSERT INTO Livro (ISBN, titulo, id_autor, ano_publicacao, genero, resumo) VALUES (?,?,?,?,?,?)', [ISBN, titulo, id_autor, ano_publicacao, genero, resumo], (error, results) => {
+    if (error) {
+      console.log('Erro ao realizar inserção', error);
+      res.status(500).send('Erro ao cadastrar livro');
+    } else {
+      console.log('Cadastrado com sucesso');
+      res.redirect('/acervo');
+    }
+  });
+});
+
 app.listen(port, () => {
   console.log(`Servidor iniciado em http://localhost:${port}`);
 });
