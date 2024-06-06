@@ -36,6 +36,29 @@ app.get(['/', '/home'], (req, res) => {
   res.render('home');
 });
 
+app.get('/acervo', (req, res) => {
+  db.query('SELECT autor.nome as autor, ISBN, titulo, ano_publicacao, resumo FROM livro JOIN autor on livro.id_autor = autor.id_autor ORDER BY titulo ASC', (error, results) =>{
+    if(error){
+      console.log('Erro ao buscar livros do acervo')
+    }else{
+      res.render('acervo', {livros: results})
+    }
+  });
+});
+
+app.get('/pesquisarLivros', (req, res) => {
+  const pesquisa = req.query.pesquisa;
+  console.log(pesquisa)
+  db.query('SELECT autor.nome as autor, ISBN, titulo, ano_publicacao, resumo FROM livro JOIN autor on livro.id_autor = autor.id_autor WHERE autor.nome like ? or titulo like ?',[`%${pesquisa}%`, `%${pesquisa}%`], (error, results) =>{
+    if(error){
+      console.log('Erro ao buscar livros do acervo')
+    }else{
+      console.log(results)
+      res.render('acervo', {livros: results})
+    }
+  });
+});
+
 app.listen(port, () => {
   console.log(`Servidor iniciado em http://localhost:${port}`);
 });
