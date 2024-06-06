@@ -22,38 +22,34 @@
         <%- include('./navbar.ejs', { activePage: 'acervo' }) %>
       </div>
       <div class="col py-3">
-          <nav class="navbar navbar-light justify-content-between">
-            <form class="form-inline" method="get" action="/cadastrarLivro">
-              <button type="submit" class="btn btn-outline-success"> Cadastrar Livro</button>
-            </form>
-            <form class="form-inline" method="get" action="/pesquisarLivros">
-              <input
-                class="form-control mr-sm-2"
-                name="pesquisa"
-                type="search"
-                placeholder="Pesquisar"
-                aria-label="Search"
-              />
-            <button class="btn btn-outline-sucess my-2 my-sm-0" type="submit">
+        <nav class="navbar navbar-light justify-content-between">
+          <form class="form-inline" method="get" action="/cadastrarLivro">
+            <button type="submit" class="btn btn-outline-success">Cadastrar Livro</button>
+          </form>
+          <form class="form-inline" method="get" action="/pesquisarLivros">
+            <input
+              class="form-control mr-sm-2"
+              name="pesquisa"
+              type="search"
+              placeholder="Pesquisar"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
               <i class="fa fa-search fa-fw"></i>
             </button>
           </form>
         </nav>
-          <hr>
-          <div class="list-group">
-            <% livros.forEach((livro) => { %>
-              <form action="/livro" method="post">
-                  <input type="hidden" name="ISBN" value="<%= livro.ISBN %>">
-                  <button type="submit" class="list-group-item list-group-item-action flex-column align-items-start btn-acervo">
-                      <div class="d-flex w-100 justify-content-between">
-                          <h5 class="mb-1"> <%= livro.titulo %> (<%= livro.ano_publicacao %>)</h5>
-                      </div>
-                      <small><%= livro.autor%></small>
-                  </button>
-              </form>
-            <% }); %> 
-          </div>
-      </div>
+        <hr>
+        <div class="list-group">
+          <% livros.forEach((livro) => { %>
+            <a href="/livro?ISBN=<%= livro.ISBN %>" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1"><%= livro.titulo %> (<%= livro.ano_publicacao %>)</h5>
+              </div>
+              <small><%= livro.autor %></small>
+            </a>
+          <% }); %> 
+        </div>
       </div>
     </div>
 
