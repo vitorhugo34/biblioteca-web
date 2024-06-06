@@ -1,0 +1,56 @@
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1000; /* ajuste conforme necessário */
+    overflow-y: auto;
+  }
+  
+  .col {
+    padding-left: 250px; /* ajuste conforme a largura da sua sidebar */
+  }
+
+  .logout-link {
+    position: absolute;
+    bottom: 10px; /* Ajuste conforme necessário */
+    left: 20px;
+  }
+
+  .nav-link .fa {
+    color: #888;
+  }
+
+  .nav-link .menu-text {
+    color: #888;
+  }
+
+  .nav-item:hover .fa,
+  .nav-item:hover .menu-text {
+    color: #fff;
+  }
+
+  @media (max-width: 600px) {
+    .sidebar {
+      max-width: 50px;
+      overflow-y: auto;
+    }
+  }
+
+  .active .fa,
+  .active .menu-text {
+    color: #fff;
+  }
+  
+  .register-title{
+    font-size: x-large;
+  }
+
+  .botoes{
+    margin-left: 0px;
+    gap: 10px;
+  }
+
+  .btn-acervo:hover{
+    cursor: pointer;
+  }

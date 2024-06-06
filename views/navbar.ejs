@@ -1,0 +1,28 @@
+<div class="row flex-nowrap">
+  <div class="col-12 col-md-3 col-xl-2 px-sm-2 px-0 bg-dark sidebar">
+    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+      <span class="ms-1 d-none d-sm-inline"> Menu</span>
+      <hr />
+      <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+        <li class="nav-item <%= activePage === 'home' ? 'active' : '' %>">
+          <a href="/home" class="nav-link align-middle px-0">
+            <i class="fa fa-home fa-fw"></i>
+            <span class="ms-1 d-none d-sm-inline menu-text">Home</span>
+          </a>
+        </li>
+        <li class="nav-item <%= activePage === 'acervo' ? 'active' : '' %>">
+          <a href="#" class="nav-link px-0 align-middle">
+            <i class="fa fa-book fa-fw"></i>
+            <span class="ms-1 d-none d-sm-inline menu-text">Acervo</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav-item">
+      <a href="#" class="nav-link px-0 align-middle mt-auto logout-link">
+        <i class="fa fa-sign-out fa-fw"></i>
+        <span class="ms-1 d-none d-sm-inline menu-text">Sair</span>
+      </a>
+    </div>
+  </div>
+</div>
