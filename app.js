@@ -104,9 +104,9 @@ app.post('/editarLivro', (req, res) => {
 app.post('/excluirLivro/:ISBN', (req, res) => {
   const ISBN = parseInt(req.params.ISBN)
   console.log(ISBN)
-  db.query('delete from livro where ISBN = ?'[ISBN], (error, results) => {
+  db.query('delete from livro where ISBN = ?', [ISBN], (error, results) => {
     if (error) {
-      console.log('erro ao excluir o livro')
+      console.log('erro ao excluir o livro', error)
     } else {
       res.redirect('/acervo')
     }
@@ -137,4 +137,33 @@ app.get('/pesquisarHome', (req, res) => {
 
 app.listen(port, () => {
   console.log(`Servidor iniciado em http://localhost:${port}`);
+});
+
+app.get('/cadastrarLivro', (req, res) => {
+  carregarAutores((error, listaAutores) => {
+    if (error) {
+      console.log('Erro ao carregar autores');
+    } else {
+      res.render('cadastroLivro', { autores: listaAutores });
+    }
+  });
+});
+
+
+app.post('/adicionarLivro', (req, res) => {
+  const ISBN = parseInt(req.body.inputISBN);
+  const id_autor = parseInt(req.body.inputAutor);
+  const titulo = req.body.inputTitulo;
+  const ano_publicacao = parseInt(req.body.inputAnoPublicacao);
+  const genero = req.body.inputGenero;
+  const resumo = req.body.textResumo;
+
+  db.query('INSERT INTO livro (ISBN, titulo, id_autor, ano_publicacao, genero, resumo) VALUES (?, ?, ?, ?, ?, ?)', [ISBN, titulo, id_autor, ano_publicacao, genero, resumo], (error, results) => {
+    if (error) {
+      console.log('Erro ao cadastrar Livro', error);
+      res.send('Erro ao cadastrar Livro');
+    } else {
+      res.redirect('/acervo', );
+    }
+  });
 });
