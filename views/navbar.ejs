@@ -4,16 +4,22 @@
       <span class="ms-1 d-none d-sm-inline"> Menu</span>
       <hr />
       <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-        <li class="nav-item <%= activePage === 'home' ? 'active' : '' %>"> 
+        <li class="nav-item <%= activePage === 'home' ? 'active' : '' %>">
           <a href="/home" class="nav-link align-middle px-0">
             <i class="fa fa-home fa-fw"></i>
             <span class="ms-1 d-none d-sm-inline menu-text">Home</span>
           </a>
         </li>
         <li class="nav-item <%= activePage === 'acervo' ? 'active' : '' %>">
-          <a href="/acervo" class="nav-link px-0 align-middle">
-            <i class="fa fa-book fa-fw"></i>
+          <a href="/acervo" class="nav-link align-middle px-0">
+            <i class="fa fa-book fa-fw"></i> 
             <span class="ms-1 d-none d-sm-inline menu-text">Acervo</span>
+          </a>
+        </li>
+        <li class="nav-item <%= activePage === 'emprestimo' ? 'active' : '' %>">
+          <a href="/emprestimo" class="nav-link align-middle px-0">
+            <i class="fa fa-book fa-fw"></i> 
+            <span class="ms-1 d-none d-sm-inline menu-text">Emprestimo</span>
           </a>
         </li>
       </ul>
