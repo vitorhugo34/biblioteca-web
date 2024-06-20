@@ -1,3 +1,4 @@
+=======
 <!DOCTYPE html>
 <html lang="pt">
   <head>
@@ -27,10 +28,6 @@
         </div>
         <form id="emprestimoForm" method="post">
           <div class="form-row">
-            <div class="form-row">
-
-          </div>
-          <div class="form-row">
             <div class="form-group col-md-8">
               <label for="inputUsuario">Usuario</label>
               <select id="inputUsuario" class="form-control" name="inputUsuario" required>
@@ -42,23 +39,25 @@
             <div class="form-group col-md-8">
                 <label for="inputLivro">Livro</label>
                 <select id="inputLivro" class="form-control" name="inputLivro" required>
-                  <% livros.forEach((livro)=> { %>
+                  <% livro.forEach((livro)=> { %>
                     <option  <%= emprestimo.id_livro === livro.ISBN ? 'selected' : '' %> value="<%=livro.ISBN %>"><%=livro.titulo%></option>
                   <% }); %> 
                 </select>
               </div>
+
             <div class="form-group col-md-4">
-              <label for="inputDataEmprestimo">Data do emprestimo:</label>
-              <input type="date" class="form-control" id="inputDataEmprestimo" name="inputDataEmprestimo" value="<%=emprestimo.data_emprestimo%>" required>
+              <label for="inputDataEmprestimo">Data do empréstimo:</label>
+              <input type="date" class="form-control" id="inputDataEmprestimo" name="inputDataEmprestimo" value="<%=data_emprestimo%>" required>
             </div>
             <div class="form-group col-md-4">
                 <label for="inputDataDevolucao">Data da devolução:</label>
-                <input type="date" class="form-control" id="inputDataDevolucao" name="inputDataDevolucao" value="<%=emprestimo.data_devolucao%>" required>
+                <input type="date" class="form-control" id="inputDataDevolucao" name="inputDataDevolucao" value="<%=data_devolucao%>" required>
               </div>
           </div>
+          
           <div class="form-row">
             <div class="col-auto">
-              <button type="submit" class="btn btn-outline-success" onclick="submitForm('/editarEmprestimo')">Salvar</button>
+              <button type="submit" class="btn btn-outline-success" onclick="submitForm('/editarEmprestimo/<%=emprestimo.id_emprestimo%>')">Salvar</button>
             </div>
             <div class="col-auto">
               <button type="button" class="btn btn-outline-danger" onclick="submitForm('/excluirEmprestimo/<%=emprestimo.id_emprestimo%>')">Excluir</button>
@@ -92,3 +91,34 @@
     </script>
   </body>
 </html>
+
+<style>
+
+  .form-row {
+      margin-left: 20px;
+  }
+  
+  .form-group {
+      margin-bottom: 15px;
+  }
+  
+  .register-title {
+    margin-left: 25px;
+      margin-bottom: 30px;
+  }
+  
+  .btn-group {
+      margin-top: 30px;
+      display: flex;
+  }
+  
+  .btn-group .btn {
+      margin-right: 10px; 
+  }
+  
+  .btn-group .btn:last-child {
+      margin-right: 0; /* Remove o espaço do último botão */
+  }
+  
+  
+  </style>
